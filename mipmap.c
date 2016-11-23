@@ -143,11 +143,11 @@ unsigned int get_volume_mipmapped_size(int width, int height,
 int get_next_mipmap_dimensions(int *next_w, int *next_h,
                                int  curr_w, int  curr_h)
 {
-   if(curr_w == 1 || curr_h == 1)
+   if(curr_w == 1 && curr_h == 1)
       return(0);
 
-   if(next_w) *next_w = curr_w >> 1;
-   if(next_h) *next_h = curr_h >> 1;
+   if(next_w) *next_w = curr_w == 1 ? 1 : curr_w >> 1;
+   if(next_h) *next_h = curr_h == 1 ? 1 : curr_h >> 1;
 
    return(1);
 }
